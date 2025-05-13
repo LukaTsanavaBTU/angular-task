@@ -1,5 +1,6 @@
 :host {
   min-height: 34px;
+  padding-right: 16px;
 }
 
 :host:hover,
@@ -55,7 +56,7 @@ button {
   background-color: transparent;
   cursor: pointer;
   position: absolute;
-  right: 0;
+  right: 16px;
   top: 50%;
   transform: translateY(-50%);
   img {
