@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-user-item',
@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './user-item.component.css'
 })
 export class UserItemComponent {
-
+  name = input.required<string>();
+  email = input.required<string>();
+  picture = input.required<string>();
 }
