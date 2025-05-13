@@ -3,3 +3,8 @@
     grid-template-columns: 1fr 4fr;
     height: 100%;
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+}

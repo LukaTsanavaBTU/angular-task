@@ -1,1 +1,31 @@
-<p>users-browser works!</p>
+<div class="header">
+  <div class="title-search">
+    <h1>მომხმარებლები</h1>
+    <div>
+      <input
+        type="search"
+        name="search"
+        id="search"
+        placeholder="მოძებნეთ მომხმარებელი"
+      />
+      <img src="icons/search.svg" alt="search" />
+    </div>
+  </div>
+  <div class="line"></div>
+  <div class="redact-filter">
+    <button>რედაქტირება</button>
+    <div>
+      <button><img src="icons/filter.svg" alt="filter" /></button>
+      <button>
+        <img src="icons/file-earmark-word.svg" alt="export file" />
+      </button>
+    </div>
+  </div>
+</div>
+<div class="users-container">
+  <app-user-item />
+</div>
+<div class="pagination">
+  ნაჩვენებია x შედეგი - y შედეგიდან -[1][2][3][4][5]-
+  <!-- maybe add seperate component for this -->
+</div>

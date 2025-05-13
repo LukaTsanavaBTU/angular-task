@@ -4,6 +4,11 @@ import { MiscPageComponent } from './main-content/misc-page/misc-page.component'
 
 export const routes: Routes = [
   { path: 'users', component: UsersBrowserComponent },
-  { path: 'test', component: MiscPageComponent },
+  { path: 'test1', component: MiscPageComponent },
+  { path: 'test2', component: MiscPageComponent },
+  { path: 'test3', component: MiscPageComponent },
+  { path: 'test4', component: MiscPageComponent },
+  { path: 'test5', component: MiscPageComponent },
+  { path: 'test6', component: MiscPageComponent },
   { path: '', redirectTo: 'users', pathMatch: 'full' },
 ];
