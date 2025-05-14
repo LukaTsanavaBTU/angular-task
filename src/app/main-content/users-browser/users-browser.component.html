@@ -23,51 +23,14 @@
   </div>
 </div>
 <div class="users-container">
+  @for (user of users(); track user.email) {
   <app-user-item
-    name="ბესიკ კაპანაძე"
-    email="besiki@domain.com"
-    picture="profile-temp.png"
+    [firstName]="user.firstName"
+    [lastName]="user.lastName"
+    [email]="user.lastName"
+    [picture]="user.image"
   />
-  <app-user-item
-    name="ბესიკ კაპანაძე"
-    email="besiki@domain.com"
-    picture="profile-temp.png"
-  />
-  <app-user-item
-    name="ბესიკ კაპანაძე"
-    email="besiki@domain.com"
-    picture="profile-temp.png"
-  />
-  <app-user-item
-    name="ბესიკ კაპანაძე"
-    email="besiki@domain.com"
-    picture="profile-temp.png"
-  />
-  <app-user-item
-    name="ბესიკ კაპანაძე"
-    email="besiki@domain.com"
-    picture="profile-temp.png"
-  />
-  <app-user-item
-    name="ბესიკ კაპანაძე"
-    email="besiki@domain.com"
-    picture="profile-temp.png"
-  />
-  <app-user-item
-    name="ბესიკ კაპანაძე"
-    email="besiki@domain.com"
-    picture="profile-temp.png"
-  />
-  <app-user-item
-    name="ბესიკ კაპანაძე"
-    email="besiki@domain.com"
-    picture="profile-temp.png"
-  />
-  <app-user-item
-    name="ბესიკ კაპანაძე"
-    email="besiki@domain.com"
-    picture="profile-temp.png"
-  />
+  }
 </div>
 <div class="pagination">
   <div class="pagination-info">ნაჩვენებია x შედეგი - y შედეგიდან</div>

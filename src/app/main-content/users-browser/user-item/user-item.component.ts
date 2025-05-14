@@ -7,7 +7,8 @@ import { Component, input } from '@angular/core';
   styleUrl: './user-item.component.css'
 })
 export class UserItemComponent {
-  name = input.required<string>();
+  firstName = input.required<string>();
+  lastName = input.required<string>();
   email = input.required<string>();
   picture = input.required<string>();
 }
