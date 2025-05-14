@@ -13,14 +13,18 @@ export class UsersBrowserComponent implements OnInit {
   private usersService = inject(UsersService);
   private destroyRef = inject(DestroyRef);
   users = signal<User[]>([]);
-  loading = signal(false);
+  loading = signal(false); // Use this for loading indicator later
+
   ngOnInit() {
+    this.drawPage(1);
+  }
+
+  private drawPage(page: number) {
     this.loading.set(true);
-    const subscription = this.usersService
-      .getUsersPage(1)
-      .subscribe((val) => {
-        this.users.set(val.users);
-      });
+    const subscription = this.usersService.getUsersPage(page).subscribe((val) => {
+      this.users.set(val.users);
+      this.loading.set(false);
+    });
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe();
     });
