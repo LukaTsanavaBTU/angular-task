@@ -2,10 +2,11 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { UserItemComponent } from './user-item/user-item.component';
 import { UsersService } from '../users.service';
 import { User } from '../users.model';
+import { PaginationComponent } from "./pagination/pagination.component";
 
 @Component({
   selector: 'app-users-browser',
-  imports: [UserItemComponent],
+  imports: [UserItemComponent, PaginationComponent],
   templateUrl: './users-browser.component.html',
   styleUrl: './users-browser.component.css',
 })
