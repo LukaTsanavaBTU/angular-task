@@ -1,5 +1,8 @@
 <div class="user-info">
-  <div><img [src]="picture()" [alt]="firstName() + '\'s profile picture'" /></div>
-  <div><span>{{ firstName() + " " + lastName() }}</span><span>{{ email() }}</span></div>
+  <div class="avatar">
+    <div><img [src]="picture()" [alt]="firstName() + '\'s profile picture'" /></div>
+    <div><span>{{ firstName() + " " + lastName() }}</span><span>{{ email() }}</span></div>
+  </div>
   <div>ყველაზე დიდი მომხმარებლის ჯგუფი</div>
 </div>
+<div class="controls"></div>
