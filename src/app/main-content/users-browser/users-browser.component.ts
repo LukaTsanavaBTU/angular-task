@@ -3,7 +3,7 @@ import { UserItemComponent } from './user-item/user-item.component';
 import { UsersService } from '../users.service';
 import { User } from '../users.model';
 import { PaginationComponent } from './pagination/pagination.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-browser',
@@ -15,6 +15,7 @@ export class UsersBrowserComponent implements OnInit {
   private usersService = inject(UsersService);
   private destroyRef = inject(DestroyRef);
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   total = signal<number>(0);
   users = signal<User[]>([]);
   usersThisPage = computed<number>(() => this.users().length);
@@ -25,7 +26,7 @@ export class UsersBrowserComponent implements OnInit {
       if (val['page']) {
         this.drawPage(parseInt(val['page']));
       } else {
-        this.drawPage(1);
+        this.router.navigate(["./"], {queryParams: {page: 1}})
       }
     });
     this.destroyRef.onDestroy(() => {
