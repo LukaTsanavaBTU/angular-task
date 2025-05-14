@@ -1,12 +1,17 @@
 :host {
     flex: 1;
     overflow: auto;
-    padding: 35px 20px;
+    padding: 35px 0;
     display: flex;
     flex-direction: column;
 }
 
 /* Header */
+
+.header,
+.users-container {
+    padding: 0 20px;
+}
 
 .header {
     display: flex;
@@ -102,3 +107,50 @@
 }
 
 /* Pagination */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-top: 1px solid #EFEFF4;
+}
+
+.pagination-info {
+    font-size: 12px;
+    color: #1A1512;
+    opacity: 0.5;
+    margin-left: 20;
+}
+
+.pagination-buttons {
+    display: flex;
+    gap: 8px;
+
+}
+
+.pagination-buttons button{
+    border: 2px solid #EAEAEA;
+    border-radius: 6px;
+    color: #00081180;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 6px 10px;
+    background-color: #FFFFFF;
+}
+
+.pagination-buttons button:hover{
+    filter: brightness(96%);
+}
+
+.pagination-buttons button.active  {
+    background-color: #C73734;
+    border: 2px solid #C73734;
+    color: #FFFFFF;;
+}
+
+.pagination-buttons button.arrow {
+    background-color: #F8FAFB;
+    border: 2px solid #E9EEF0;
+    color: #818B9A;
+}
