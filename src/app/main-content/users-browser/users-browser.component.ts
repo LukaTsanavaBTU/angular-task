@@ -1,4 +1,11 @@
-import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { UserItemComponent } from './user-item/user-item.component';
 import { UsersService } from '../users.service';
 import { User } from '../users.model';
@@ -17,7 +24,6 @@ export class UsersBrowserComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-  // page = signal<number>(0);
   total = signal<number>(0);
   users = signal<User[]>([]);
   usersThisPage = computed<number>(() => this.users().length);
@@ -26,10 +32,10 @@ export class UsersBrowserComponent implements OnInit {
   ngOnInit() {
     const subscription = this.route.queryParams.subscribe((val) => {
       if (val['page']) {
-        // this.page.set(val['page'])
         this.drawPage(parseInt(val['page']));
       } else {
-        this.router.navigate(["./"], {queryParams: {page: 1}})
+        this.router.navigate(['./'], { queryParams: { page: 1 } });
+        // Handle manually inputing non-existent pages
       }
     });
     this.destroyRef.onDestroy(() => {
@@ -38,8 +44,20 @@ export class UsersBrowserComponent implements OnInit {
   }
 
   onSearch(search: HTMLInputElement) {
-    console.log(search.value);
-    // this.router.navigate(["./"], {queryParams: {page: this.page(), search: search.value}})
+    if (search.value) {
+      this.router.navigate(['./'], {
+        queryParams: {
+          page: 1,
+          search: search.value,
+        },
+      });
+    } else {
+      this.router.navigate(['./'], {
+        queryParams: {
+          page: 1,
+        },
+      });
+    }
   }
 
   private drawPage(page: number) {

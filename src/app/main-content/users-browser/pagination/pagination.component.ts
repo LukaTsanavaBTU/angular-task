@@ -24,10 +24,10 @@ export class PaginationComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
-  total = input.required<number>()
+  total = input.required<number>();
   usersThisPage = input.required<number>();
-  page = signal<string>("1");
-  lastPage = computed(() => Math.ceil(this.total() / 10)); 
+  page = signal<string>('1');
+  lastPage = computed(() => Math.ceil(this.total() / 10));
   pagesArray = computed<number[]>(() => this.calculatePages());
 
   ngOnInit() {
@@ -45,6 +45,7 @@ export class PaginationComponent implements OnInit {
     if (+this.page() > 1) {
       this.router.navigate(['./'], {
         queryParams: { page: +this.page() - 1 },
+        queryParamsHandling: 'merge',
       });
     }
   }
@@ -53,6 +54,7 @@ export class PaginationComponent implements OnInit {
     if (+this.page() < this.lastPage()) {
       this.router.navigate(['./'], {
         queryParams: { page: +this.page() + 1 },
+        queryParamsHandling: 'merge',
       });
     }
   }
@@ -69,8 +71,7 @@ export class PaginationComponent implements OnInit {
       for (let i = this.lastPage() - 4; i < this.lastPage() + 1; i++) {
         arr.push(i);
       }
-    }
-     else {
+    } else {
       for (let i = firstPage; i < firstPage + 5; i++) {
         arr.push(i);
       }

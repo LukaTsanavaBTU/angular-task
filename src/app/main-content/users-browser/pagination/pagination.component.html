@@ -1,10 +1,10 @@
 <div class="pagination-info">ნაჩვენებია {{usersThisPage()}} შედეგი - {{total()}} შედეგიდან</div>
 <div class="pagination-buttons">
-  <a routerLink="./" [queryParams]="{page: 1}" class="arrow">&#60;&#60;</a>
+  <a routerLink="./" [queryParams]="{page: 1}" queryParamsHandling="merge" class="arrow">&#60;&#60;</a>
   <a (click)="goPrevious()" class="arrow">&#60;</a>
   @for(num of pagesArray(); track num) {
-    <a routerLink="./" [queryParams]="{page: num}" routerLinkActive="active">{{ num }}</a>
+    <a routerLink="./" [queryParams]="{page: num}" queryParamsHandling="merge" routerLinkActive="active">{{ num }}</a>
   }
   <a (click)="goNext()" class="arrow">&#62;</a>
-  <a routerLink="./" [queryParams]="{page: lastPage()}" class="arrow">&#62;&#62;</a>
+  <a routerLink="./" [queryParams]="{page: lastPage()}" queryParamsHandling="merge" class="arrow">&#62;&#62;</a>
 </div>
