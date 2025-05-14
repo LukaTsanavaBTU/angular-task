@@ -4,10 +4,11 @@ import { UsersService } from '../users.service';
 import { User } from '../users.model';
 import { PaginationComponent } from './pagination/pagination.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-users-browser',
-  imports: [UserItemComponent, PaginationComponent],
+  imports: [UserItemComponent, PaginationComponent, FormsModule],
   templateUrl: './users-browser.component.html',
   styleUrl: './users-browser.component.css',
 })
@@ -16,6 +17,7 @@ export class UsersBrowserComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  // page = signal<number>(0);
   total = signal<number>(0);
   users = signal<User[]>([]);
   usersThisPage = computed<number>(() => this.users().length);
@@ -24,6 +26,7 @@ export class UsersBrowserComponent implements OnInit {
   ngOnInit() {
     const subscription = this.route.queryParams.subscribe((val) => {
       if (val['page']) {
+        // this.page.set(val['page'])
         this.drawPage(parseInt(val['page']));
       } else {
         this.router.navigate(["./"], {queryParams: {page: 1}})
@@ -32,6 +35,11 @@ export class UsersBrowserComponent implements OnInit {
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe();
     });
+  }
+
+  onSearch(search: HTMLInputElement) {
+    console.log(search.value);
+    // this.router.navigate(["./"], {queryParams: {page: this.page(), search: search.value}})
   }
 
   private drawPage(page: number) {

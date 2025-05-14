@@ -1,15 +1,17 @@
 <div class="header">
   <div class="title-search">
     <h1>მომხმარებლები</h1>
-    <div>
-      <input
+    <form (ngSubmit)="onSearch(search)">
+      <input #search
         type="search"
         name="search"
         id="search"
         placeholder="მოძებნეთ მომხმარებელი"
       />
-      <img src="icons/search.svg" alt="search" />
-    </div>
+      <button>
+        <img src="icons/search.svg" alt="search" />
+      </button>
+    </form>
   </div>
   <div class="line"></div>
   <div class="redact-filter">
