@@ -19,7 +19,9 @@
 
 }
 
-.pagination-buttons button{
+.pagination-buttons a{
+    cursor: pointer;
+    text-decoration: none;
     border: 2px solid #EAEAEA;
     border-radius: 6px;
     color: #00081180;
@@ -29,17 +31,17 @@
     background-color: #FFFFFF;
 }
 
-.pagination-buttons button:hover{
+.pagination-buttons a:hover{
     filter: brightness(96%);
 }
 
-.pagination-buttons button.active  {
+.pagination-buttons a.active  {
     background-color: #C73734;
     border: 2px solid #C73734;
     color: #FFFFFF;;
 }
 
-.pagination-buttons button.arrow {
+.pagination-buttons a.arrow {
     background-color: #F8FAFB;
     border: 2px solid #E9EEF0;
     color: #818B9A;
