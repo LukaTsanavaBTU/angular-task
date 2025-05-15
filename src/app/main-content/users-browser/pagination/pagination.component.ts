@@ -65,15 +65,21 @@ export class PaginationComponent implements OnInit {
     const firstPage = 1;
     if (pageNum > 3 && pageNum < this.lastPage() - 2) {
       for (let i = -2; i < 3; i++) {
-        arr.push(pageNum + i);
+        if (pageNum + i <= this.lastPage()) {
+          arr.push((pageNum + i));
+        }
       }
-    } else if (pageNum > this.lastPage() - 3) {
+    } else if (pageNum > this.lastPage() - 3 && this.lastPage() > 4) {
       for (let i = this.lastPage() - 4; i < this.lastPage() + 1; i++) {
-        arr.push(i);
+        if (i <= this.lastPage()) {
+          arr.push(i);
+        }
       }
     } else {
       for (let i = firstPage; i < firstPage + 5; i++) {
-        arr.push(i);
+        if (i <= this.lastPage()) {
+          arr.push(i);
+        }
       }
     }
     return arr;

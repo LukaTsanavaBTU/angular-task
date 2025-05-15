@@ -32,7 +32,11 @@ export class UsersBrowserComponent implements OnInit {
   ngOnInit() {
     const subscription = this.route.queryParams.subscribe((val) => {
       if (val['page']) {
-        this.drawPage(parseInt(val['page']));
+        if (val['search']) {
+          this.drawPage(parseInt(val['page']), val['search']);
+        } else {
+          this.drawPage(parseInt(val['page']));
+        }
       } else {
         this.router.navigate(['./'], { queryParams: { page: 1 } });
         // Handle manually inputing non-existent pages
@@ -60,15 +64,24 @@ export class UsersBrowserComponent implements OnInit {
     }
   }
 
-  private drawPage(page: number) {
+  private drawPage(page: number, search?: string) {
     this.loading.set(true);
-    const subscription = this.usersService
-      .getUsersPage(page)
-      .subscribe((val) => {
+    let subscription;
+    if (search) {
+      subscription = this.usersService
+        .getSearchUsersPage(page, search)
+        .subscribe((val) => {
+          this.total.set(val['total']);
+          this.users.set(val.users);
+          this.loading.set(false);
+        });
+    } else {
+      subscription = this.usersService.getUsersPage(page).subscribe((val) => {
         this.total.set(val['total']);
         this.users.set(val.users);
         this.loading.set(false);
       });
+    }
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe();
     });

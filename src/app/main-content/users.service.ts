@@ -19,4 +19,19 @@ export class UsersService {
       params: params,
     });
   }
+
+  getSearchUsersPage(page: number, query: string) {
+    const skipVal = ((page - 1) * 10).toString();
+    const params = new HttpParams()
+      .set('limit', '10')
+      .set('skip', skipVal)
+      .set('q', query);
+    return this.http.get<{
+      users: User[];
+      total: number;
+      [others: string]: unknown;
+    }>('https://dummyjson.com/users/search', {
+      params: params,
+    });
+  }
 }
