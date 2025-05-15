@@ -34,4 +34,17 @@ export class UsersService {
       params: params,
     });
   }
+
+  getUserById(id: string) {
+    const params = new HttpParams()
+      .set('key', "id")
+      .set('value', id)
+    return this.http.get<{
+      users: User[];
+      total: number;
+      [others: string]: unknown;
+    }>('https://dummyjson.com/users/filter', {
+      params: params,
+    });
+  }
 }
