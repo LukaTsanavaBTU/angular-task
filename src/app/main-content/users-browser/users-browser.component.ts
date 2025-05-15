@@ -64,6 +64,10 @@ export class UsersBrowserComponent implements OnInit {
     }
   }
 
+  onClickUser(user: User) {
+    console.log(user.email);
+  }
+
   private drawPage(page: number, search?: string) {
     this.loading.set(true);
     let subscription;
