@@ -7,6 +7,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { User } from '../../users.model';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 export class EditDialogComponent {
   private dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
   showDialog = input(false);
+  selectedUser = input.required<User>();
   closeDialog = output();
 
   constructor() {

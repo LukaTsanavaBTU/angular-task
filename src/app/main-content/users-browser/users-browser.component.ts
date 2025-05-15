@@ -29,7 +29,7 @@ export class UsersBrowserComponent implements OnInit {
   total = signal<number>(0);
   users = signal<User[]>([]);
   usersThisPage = computed<number>(() => this.users().length);
-  selectedId = signal<string | undefined>(undefined);
+  selectedUser = signal<User | undefined>(undefined);
   loading = signal(false); // Use this for loading indicator later
 
   ngOnInit() {
@@ -71,12 +71,14 @@ export class UsersBrowserComponent implements OnInit {
     this.router.navigate(['users', user.id]);
   }
 
-  onClickUser(id: string) {
-    this.selectedId.set(id);
+  onClickUser(user: User) {
+    this.selectedUser.set(user);
   }
 
   onEditUser() {
-    this.showDialog.set(true);
+    if (this.selectedUser()) {
+      this.showDialog.set(true);
+    }
   }
 
   onStopEditingUser() {

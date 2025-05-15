@@ -31,11 +31,11 @@
     [lastName]="user.lastName"
     [email]="user.lastName"
     [picture]="user.image"
-    [selected]="user.id === selectedId()"
+    [selected]="user.id === selectedUser()?.id"
     (dblclick)="onDoubleClickUser(user)"
-    (click)="onClickUser(user.id)"
+    (click)="onClickUser(user)"
   />
   }
 </div>
 <app-pagination [total]="total()" [usersThisPage]="usersThisPage()" />
-<app-edit-dialog [showDialog]="showDialog()" (closeDialog)="onStopEditingUser()"></app-edit-dialog>
+<app-edit-dialog [selectedUser]="selectedUser()!" [showDialog]="showDialog()" (closeDialog)="onStopEditingUser()"></app-edit-dialog>

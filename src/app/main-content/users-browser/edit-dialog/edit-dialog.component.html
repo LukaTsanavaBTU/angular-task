@@ -9,15 +9,15 @@
       <ul>
         <li>
           <label for="email"> ელ.ფოსტა </label>
-          <input type="email" name="email" id="email" />
+          <input type="email" name="email" id="email" [value]="selectedUser().email"/>
         </li>
         <li>
           <label for="first"> მომხმარებლის სახელი </label>
-          <input type="first" name="first" id="first" />
+          <input type="first" name="first" id="first" [value]="selectedUser().firstName"/>
         </li>
         <li>
           <label for="last"> მომხმარებლის გვარი </label>
-          <input type="last" name="last" id="last" />
+          <input type="last" name="last" id="last" [value]="selectedUser().lastName"/>
         </li>
       </ul>
       <div>
