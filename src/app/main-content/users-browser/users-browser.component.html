@@ -15,7 +15,7 @@
   </div>
   <div class="line"></div>
   <div class="redact-filter">
-    <button>რედაქტირება</button>
+    <button (click)="onEditUser()">რედაქტირება</button>
     <div>
       <button><img src="icons/filter.svg" alt="filter" /></button>
       <button>
@@ -38,3 +38,4 @@
   }
 </div>
 <app-pagination [total]="total()" [usersThisPage]="usersThisPage()" />
+<app-edit-dialog [showDialog]="showDialog()" (closeDialog)="onStopEditingUser()"></app-edit-dialog>

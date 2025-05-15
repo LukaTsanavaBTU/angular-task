@@ -1,0 +1,29 @@
+<dialog #dialog (close)="onStopEditingUser()">
+  <div class="wrapper">
+    <div class="header">
+      <h1>მომხმარებლის რედაქტირება</h1>
+      <button (click)="onStopEditingUser()"><img src="icons/close.svg" alt="close" /></button>
+    </div>
+    <div class="line"></div>
+    <form>
+      <ul>
+        <li>
+          <label for="email"> ელ.ფოსტა </label>
+          <input type="email" name="email" id="email" />
+        </li>
+        <li>
+          <label for="first"> მომხმარებლის სახელი </label>
+          <input type="first" name="first" id="first" />
+        </li>
+        <li>
+          <label for="last"> მომხმარებლის გვარი </label>
+          <input type="last" name="last" id="last" />
+        </li>
+      </ul>
+      <div>
+        <button (click)="onStopEditingUser()">გაუქმება</button>
+        <button>დამატება</button>
+      </div>
+    </form>
+  </div>
+</dialog>

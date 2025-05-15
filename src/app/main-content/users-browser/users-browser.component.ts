@@ -12,10 +12,11 @@ import { User } from '../users.model';
 import { PaginationComponent } from './pagination/pagination.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { EditDialogComponent } from "./edit-dialog/edit-dialog.component";
 
 @Component({
   selector: 'app-users-browser',
-  imports: [UserItemComponent, PaginationComponent, FormsModule],
+  imports: [UserItemComponent, PaginationComponent, FormsModule, EditDialogComponent],
   templateUrl: './users-browser.component.html',
   styleUrl: './users-browser.component.css',
 })
@@ -24,6 +25,7 @@ export class UsersBrowserComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  showDialog = signal(false);
   total = signal<number>(0);
   users = signal<User[]>([]);
   usersThisPage = computed<number>(() => this.users().length);
@@ -66,11 +68,19 @@ export class UsersBrowserComponent implements OnInit {
   }
 
   onDoubleClickUser(user: User) {
-    this.router.navigate(["users", user.id])
+    this.router.navigate(['users', user.id]);
   }
 
   onClickUser(id: string) {
     this.selectedId.set(id);
+  }
+
+  onEditUser() {
+    this.showDialog.set(true);
+  }
+
+  onStopEditingUser() {
+    this.showDialog.set(false);
   }
 
   private drawPage(page: number, search?: string) {
