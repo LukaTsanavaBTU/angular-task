@@ -27,6 +27,7 @@ export class UsersBrowserComponent implements OnInit {
   total = signal<number>(0);
   users = signal<User[]>([]);
   usersThisPage = computed<number>(() => this.users().length);
+  selectedId = signal<string | undefined>(undefined);
   loading = signal(false); // Use this for loading indicator later
 
   ngOnInit() {
@@ -64,8 +65,12 @@ export class UsersBrowserComponent implements OnInit {
     }
   }
 
-  onClickUser(user: User) {
+  onDoubleClickUser(user: User) {
     this.router.navigate(["users", user.id])
+  }
+
+  onClickUser(id: string) {
+    this.selectedId.set(id);
   }
 
   private drawPage(page: number, search?: string) {

@@ -6,7 +6,8 @@
   padding: 15px 20px;
 }
 
-:host:hover {
+:host:hover,
+:host.selected {
   background-color: #f9f9fb;
   cursor: pointer;
 }

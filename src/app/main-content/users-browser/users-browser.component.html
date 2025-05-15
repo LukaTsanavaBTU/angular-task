@@ -31,7 +31,9 @@
     [lastName]="user.lastName"
     [email]="user.lastName"
     [picture]="user.image"
-    (dblclick)="onClickUser(user)"
+    [selected]="user.id === selectedId()"
+    (dblclick)="onDoubleClickUser(user)"
+    (click)="onClickUser(user.id)"
   />
   }
 </div>

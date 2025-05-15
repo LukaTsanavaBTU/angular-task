@@ -1,13 +1,13 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { InfoDivComponent } from './info-div/info-div.component';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '../users.service';
 import type { User } from '../users.model';
 import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-users-info',
-  imports: [InfoDivComponent, RouterLink],
+  imports: [InfoDivComponent],
   templateUrl: './users-info.component.html',
   styleUrl: './users-info.component.css',
 })
