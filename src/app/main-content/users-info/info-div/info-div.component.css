@@ -1,0 +1,19 @@
+:host {
+    display: block;
+    padding: 14px 20px;
+    background-color: #F9F9FB;
+    border: 1px solid #E6E4E2;
+    border-radius: 12px;
+    color: #1A1512;
+}
+
+div:first-child {
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.4;
+}
+
+div:last-child {
+    font-size: 14px;
+    font-weight: 600;
+}
