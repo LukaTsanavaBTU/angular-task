@@ -3,6 +3,7 @@ import { InfoDivComponent } from './info-div/info-div.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { UsersService } from '../users.service';
 import type { User } from '../users.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-users-info',
@@ -14,6 +15,7 @@ export class UsersInfoComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private usersService = inject(UsersService);
   private destroyRef = inject(DestroyRef);
+  private location = inject(Location);
   user = signal<User | undefined>(undefined);
 
   ngOnInit() {
@@ -24,11 +26,15 @@ export class UsersInfoComponent implements OnInit {
     });
   }
 
+  onBack() {
+    this.location.back();
+  }
+
   getUser(id: string) {
     const subscription = this.usersService.getUserById(id).subscribe((val) => {
       this.user.set(val.users[0]);
     });
-    
+
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe();
     });
