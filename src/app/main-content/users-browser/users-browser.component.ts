@@ -65,7 +65,7 @@ export class UsersBrowserComponent implements OnInit {
   }
 
   onClickUser(user: User) {
-    console.log(user.email);
+    this.router.navigate(["users", user.id])
   }
 
   private drawPage(page: number, search?: string) {
