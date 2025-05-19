@@ -19,9 +19,9 @@ import { User } from '../../users.model';
   imports: [ReactiveFormsModule],
   templateUrl: './edit-dialog.component.html',
   styleUrl: './edit-dialog.component.css',
+  host: {"(document:keydown.esc)": "onStopEditingUser()"}
 })
 export class EditDialogComponent implements AfterViewInit {
-  private dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
   showDialog = input(false);
   selectedUser = input.required<User>();
   closeDialog = output();
@@ -33,7 +33,6 @@ export class EditDialogComponent implements AfterViewInit {
   });
 
   ngAfterViewInit() {
-    this.dialog().nativeElement.showModal();
     this.form.setValue({
       email: this.selectedUser().email,
       firstName: this.selectedUser().firstName,
@@ -42,7 +41,6 @@ export class EditDialogComponent implements AfterViewInit {
   }
 
   onStopEditingUser() {
-    this.form.reset();
     this.closeDialog.emit();
   }
 
