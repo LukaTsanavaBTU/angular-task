@@ -1,37 +1,39 @@
 <div class="backdrop" (click)="onStopEditingUser()"></div>
 <div class="modal" (close)="onStopEditingUser()">
-  <div class="wrapper">
-    <div class="header">
-      <h1>მომხმარებლის რედაქტირება</h1>
-      <button (click)="onStopEditingUser()">
-        <img src="icons/close.svg" alt="close" />
-      </button>
-    </div>
-    <div class="line"></div>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <ul>
-        <li>
-          <label for="email"> ელ.ფოსტა </label>
-          <input type="email" name="email" id="email" formControlName="email" />
-        </li>
-        <li>
-          <label for="first"> მომხმარებლის სახელი </label>
-          <input
-            type="first"
-            name="first"
-            id="first"
-            formControlName="firstName"
-          />
-        </li>
-        <li>
-          <label for="last"> მომხმარებლის გვარი </label>
-          <input type="last" name="last" id="last" formControlName="lastName" />
-        </li>
-      </ul>
-      <div>
-        <button (click)="onStopEditingUser()">გაუქმება</button>
-        <button [disabled]="!form.valid">დამატება</button>
-      </div>
-    </form>
+  <div class="header">
+    <h1>მომხმარებლის რედაქტირება</h1>
+    <button (click)="onStopEditingUser()">
+      <img src="icons/close.svg" alt="close" />
+    </button>
   </div>
+  <div class="line"></div>
+  @if(result()) {
+    <app-edit-result (close)="onStopEditingUser()" [result]="result()!"/>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ul>
+      <li>
+        <label for="email"> ელ.ფოსტა </label>
+        <input type="email" name="email" id="email" formControlName="email" />
+      </li>
+      <li>
+        <label for="first"> მომხმარებლის სახელი </label>
+        <input
+          type="first"
+          name="first"
+          id="first"
+          formControlName="firstName"
+        />
+      </li>
+      <li>
+        <label for="last"> მომხმარებლის გვარი </label>
+        <input type="last" name="last" id="last" formControlName="lastName" />
+      </li>
+    </ul>
+    <div>
+      <button (click)="onStopEditingUser()">გაუქმება</button>
+      <button [disabled]="!form.valid">დამატება</button>
+    </div>
+  </form>
+  }
 </div>

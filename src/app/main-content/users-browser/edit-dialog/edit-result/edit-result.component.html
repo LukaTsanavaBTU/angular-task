@@ -1,0 +1,9 @@
+@if (result() === "success") {
+    <div><img src="icons/check-small.svg" alt="success" /></div>
+    <p>მოქმედება წარმატებით შესრულდა</p>
+} @else {
+    <div class="fail"><img src="icons/exclamation.svg" alt="fail" /></div>
+    <p>მოქმედება ვერ შესრულდა</p>
+}
+
+<button (click)="onClose()">დახურვა</button>

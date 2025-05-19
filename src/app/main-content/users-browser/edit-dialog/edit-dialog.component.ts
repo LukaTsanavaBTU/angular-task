@@ -2,11 +2,10 @@ import {
   AfterViewInit,
   Component,
   DestroyRef,
-  ElementRef,
   inject,
   input,
   output,
-  viewChild,
+  signal,
 } from '@angular/core';
 import {
   FormControl,
@@ -17,10 +16,11 @@ import {
 import { User } from '../../users.model';
 import { UsersService } from '../../users.service';
 import { UpdatedUser } from '../updated-user.model';
+import { EditResultComponent } from "./edit-result/edit-result.component";
 
 @Component({
   selector: 'app-edit-dialog',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, EditResultComponent],
   templateUrl: './edit-dialog.component.html',
   styleUrl: './edit-dialog.component.css',
   host: { '(document:keydown.esc)': 'onStopEditingUser()' },
@@ -28,6 +28,7 @@ import { UpdatedUser } from '../updated-user.model';
 export class EditDialogComponent implements AfterViewInit {
   private usersService = inject(UsersService);
   private destroyRef = inject(DestroyRef);
+  result = signal<"fail" | "success" | undefined>(undefined);
   showDialog = input(false);
   selectedUser = input.required<User>();
   closeDialog = output();
