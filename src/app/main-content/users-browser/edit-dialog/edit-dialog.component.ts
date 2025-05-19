@@ -1,7 +1,9 @@
 import {
   AfterViewInit,
   Component,
+  DestroyRef,
   ElementRef,
+  inject,
   input,
   output,
   viewChild,
@@ -13,15 +15,19 @@ import {
   Validators,
 } from '@angular/forms';
 import { User } from '../../users.model';
+import { UsersService } from '../../users.service';
+import { UpdatedUser } from '../updated-user.model';
 
 @Component({
   selector: 'app-edit-dialog',
   imports: [ReactiveFormsModule],
   templateUrl: './edit-dialog.component.html',
   styleUrl: './edit-dialog.component.css',
-  host: {"(document:keydown.esc)": "onStopEditingUser()"}
+  host: { '(document:keydown.esc)': 'onStopEditingUser()' },
 })
 export class EditDialogComponent implements AfterViewInit {
+  private usersService = inject(UsersService);
+  private destroyRef = inject(DestroyRef);
   showDialog = input(false);
   selectedUser = input.required<User>();
   closeDialog = output();
@@ -45,6 +51,15 @@ export class EditDialogComponent implements AfterViewInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    if (this.form.valid) {
+      const subscription = this.usersService
+        .editUser(this.selectedUser().id, this.form.value as UpdatedUser)
+        .subscribe((val) => {
+          console.log(val);
+        });
+      this.destroyRef.onDestroy(() => {
+        subscription.unsubscribe();
+      });
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { User } from './users.model';
+import { UpdatedUser } from './users-browser/updated-user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -36,10 +37,14 @@ export class UsersService {
   }
 
   getUserById(id: string) {
-    return this.http.get<User>('https://dummyjson.com/users/' + id);
+    return this.http.get<User>(`https://dummyjson.com/users/${id}`);
   }
 
-  editUser() {
-    // https://dummyjson.com/users/1
+  editUser(id: string, updatedUser: UpdatedUser) {
+    console.log(updatedUser);
+    return this.http.put(
+      `https://dummyjson.com/users/${id}`,
+      JSON.stringify(updatedUser)
+    );
   }
 }
