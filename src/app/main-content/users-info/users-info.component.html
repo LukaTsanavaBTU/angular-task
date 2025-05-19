@@ -1,19 +1,19 @@
 <div class="header">
-  <button (click)="(onBack())"><img src="icons/arrow-left.svg" alt="back" /></button>
+  <button (click)="onBack()">
+    <img src="icons/arrow-left.svg" alt="back" />
+  </button>
   <h1>მომხმარებლები</h1>
 </div>
 <div class="line"></div>
 @if (user()) {
-    <div class="avatar"><img [src]="user()!.image" alt="user's avatar" /></div>
-    <div class="info">
-    <app-info-div label="მომხმარებლის სახელი" [text]="user()!.firstName" />
-    <app-info-div label="მომხმარებლის გვარი" [text]="user()!.lastName" />
-    <app-info-div label="ელ.ფოსტა" [text]="user()!.email" />
-    <app-info-div
-        label="მომხმარებლის ჯგუფი"
-        text="ყველაზე დიდი მომხმარებელთა ჯგუფი"
-    />
-    </div>
+<div class="avatar"><img [src]="user()!.image" alt="user's avatar" /></div>
+<div class="info">
+  <app-info-div label="მომხმარებლის სახელი" [text]="user()!.firstName" />
+  <app-info-div label="მომხმარებლის გვარი" [text]="user()!.lastName" />
+  <app-info-div label="ელ.ფოსტა" [text]="user()!.email" />
+  <app-info-div label="სქესი" [text]="user()!.gender | titlecase" />
+  <app-info-div label="ტელეფონის ნომერი" [text]="user()!.phone" />
+</div>
 } @else {
-    <div class="err">მომხმარებელი ვერ მოიძებნა!</div>
+<div class="err">მომხმარებელი ვერ მოიძებნა!</div>
 }

@@ -3,11 +3,11 @@ import { InfoDivComponent } from './info-div/info-div.component';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '../users.service';
 import type { User } from '../users.model';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 
 @Component({
   selector: 'app-users-info',
-  imports: [InfoDivComponent],
+  imports: [InfoDivComponent, CommonModule],
   templateUrl: './users-info.component.html',
   styleUrl: './users-info.component.css',
 })
