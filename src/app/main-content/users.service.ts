@@ -42,7 +42,7 @@ export class UsersService {
 
   editUser(id: string, updatedUser: UpdatedUser) {
     return this.http.put(
-      `https://dummyjson.com/usders/${id}`,
+      `https://dummyjson.com/users/${id}`,
       JSON.stringify(updatedUser),
       {
         observe: 'response',
