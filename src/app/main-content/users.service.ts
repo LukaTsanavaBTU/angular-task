@@ -36,15 +36,10 @@ export class UsersService {
   }
 
   getUserById(id: string) {
-    const params = new HttpParams()
-      .set('key', "id")
-      .set('value', id)
-    return this.http.get<{
-      users: User[];
-      total: number;
-      [others: string]: unknown;
-    }>('https://dummyjson.com/users/filter', {
-      params: params,
-    });
+    return this.http.get<User>('https://dummyjson.com/users/' + id);
+  }
+
+  editUser() {
+    // https://dummyjson.com/users/1
   }
 }

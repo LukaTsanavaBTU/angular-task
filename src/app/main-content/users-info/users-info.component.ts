@@ -32,7 +32,7 @@ export class UsersInfoComponent implements OnInit {
 
   getUser(id: string) {
     const subscription = this.usersService.getUserById(id).subscribe((val) => {
-      this.user.set(val.users[0]);
+      this.user.set(val);
     });
 
     this.destroyRef.onDestroy(() => {
