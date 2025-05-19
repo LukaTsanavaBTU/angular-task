@@ -41,10 +41,12 @@ export class UsersService {
   }
 
   editUser(id: string, updatedUser: UpdatedUser) {
-    console.log(updatedUser);
     return this.http.put(
-      `https://dummyjson.com/users/${id}`,
-      JSON.stringify(updatedUser)
+      `https://dummyjson.com/usders/${id}`,
+      JSON.stringify(updatedUser),
+      {
+        observe: 'response',
+      }
     );
   }
 }

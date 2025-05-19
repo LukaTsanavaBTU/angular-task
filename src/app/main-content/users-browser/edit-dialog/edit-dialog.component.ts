@@ -16,7 +16,7 @@ import {
 import { User } from '../../users.model';
 import { UsersService } from '../../users.service';
 import { UpdatedUser } from '../updated-user.model';
-import { EditResultComponent } from "./edit-result/edit-result.component";
+import { EditResultComponent } from './edit-result/edit-result.component';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -28,7 +28,7 @@ import { EditResultComponent } from "./edit-result/edit-result.component";
 export class EditDialogComponent implements AfterViewInit {
   private usersService = inject(UsersService);
   private destroyRef = inject(DestroyRef);
-  result = signal<"fail" | "success" | undefined>(undefined);
+  result = signal<'fail' | 'success' | undefined>(undefined);
   showDialog = input(false);
   selectedUser = input.required<User>();
   closeDialog = output();
@@ -55,8 +55,15 @@ export class EditDialogComponent implements AfterViewInit {
     if (this.form.valid) {
       const subscription = this.usersService
         .editUser(this.selectedUser().id, this.form.value as UpdatedUser)
-        .subscribe((val) => {
-          console.log(val);
+        .subscribe({
+          next: (val) => {
+            if (val.status === 200) {
+              this.result.set('success');
+            }
+          },
+          error: (err) => {
+            this.result.set('fail');
+          }
         });
       this.destroyRef.onDestroy(() => {
         subscription.unsubscribe();
