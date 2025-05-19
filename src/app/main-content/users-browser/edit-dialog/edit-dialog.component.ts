@@ -1,38 +1,52 @@
 import {
+  AfterViewInit,
   Component,
-  effect,
   ElementRef,
   input,
   output,
   viewChild,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { User } from '../../users.model';
 
 @Component({
   selector: 'app-edit-dialog',
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './edit-dialog.component.html',
   styleUrl: './edit-dialog.component.css',
 })
-export class EditDialogComponent {
+export class EditDialogComponent implements AfterViewInit {
   private dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
   showDialog = input(false);
   selectedUser = input.required<User>();
   closeDialog = output();
 
-  constructor() {
-    effect(() => {
-      if (this.showDialog()) {
-        this.dialog().nativeElement.showModal();
-      } else {
-        this.dialog().nativeElement.close();
-      }
+  form = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+  });
+
+  ngAfterViewInit() {
+    this.dialog().nativeElement.showModal();
+    this.form.setValue({
+      email: this.selectedUser().email,
+      firstName: this.selectedUser().firstName,
+      lastName: this.selectedUser().lastName,
     });
   }
 
   onStopEditingUser() {
+    this.form.reset();
     this.closeDialog.emit();
-    //reset form
+  }
+
+  onSubmit() {
+    console.log(this.form.value);
   }
 }

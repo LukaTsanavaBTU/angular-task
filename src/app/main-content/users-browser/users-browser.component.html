@@ -2,7 +2,8 @@
   <div class="title-search">
     <h1>მომხმარებლები</h1>
     <form (ngSubmit)="onSearch(search)">
-      <input #search
+      <input
+        #search
         type="search"
         name="search"
         id="search"
@@ -38,4 +39,10 @@
   }
 </div>
 <app-pagination [total]="total()" [usersThisPage]="usersThisPage()" />
-<app-edit-dialog [selectedUser]="selectedUser()!" [showDialog]="showDialog()" (closeDialog)="onStopEditingUser()"></app-edit-dialog>
+@if (showDialog()) {
+  <app-edit-dialog
+    [selectedUser]="selectedUser()!"
+    [showDialog]="showDialog()"
+    (closeDialog)="onStopEditingUser()"
+  ></app-edit-dialog>
+}

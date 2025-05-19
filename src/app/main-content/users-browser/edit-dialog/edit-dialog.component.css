@@ -45,16 +45,14 @@ form {
   color: #1a1512;
   ul {
     flex: 1;
-    display: flex;
+    display: grid;
     align-content: flex-start;
-    flex-wrap: wrap;
     list-style: none;
     column-gap: 10px;
     row-gap: 20px;
     padding: 20px 0;
   }
   li {
-    flex: 1 1 auto;
     border: 1px solid #e6e4e2;
     border-radius: 12px;
     padding: 15px 20px;
@@ -67,12 +65,19 @@ form {
       font-size: 14px;
       font-weight: 600;
       border: none;
+      background-color: transparent;
       outline: none;
       width: 100%;
     }
   }
+  li:first-child {
+    grid-column: 1 / 3;
+  }
   li:focus-within {
     outline: 2px solid #2b7cd366;
+  }
+  li:has(.ng-touched.ng-dirty.ng-invalid) {
+    background-color: #ff040057;
   }
   div:last-child {
     display: flex;
@@ -96,6 +101,10 @@ form {
     button:last-child {
       color: #ffffff;
       background-color: #2b7cd3;
+    }
+    button[disabled] {
+      filter: saturate(20%);
+      cursor: not-allowed;
     }
   }
 }
