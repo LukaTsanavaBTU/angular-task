@@ -31,8 +31,8 @@
       </li>
     </ul>
     <div>
-      <button (click)="onStopEditingUser()">გაუქმება</button>
-      <button [disabled]="!form.valid">დამატება</button>
+      <button type="button" (click)="onStopEditingUser()">გაუქმება</button>
+      <button type="submit" [disabled]="!form.valid">დამატება</button>
     </div>
   </form>
   }
